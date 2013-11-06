@@ -5,9 +5,28 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-    <bean id="helloWorld" class="com.arjun.spring.MessageHandler" scope="prototype">
+
+    <bean id="helloWorld" class="com.arjun.spring.MessageHandler">
+        <constructor-arg value="I am the constructor message" />
+        <property name="message" value="Abracadabra!"/>
+    </bean>
+
+    <bean id="helloWorld_con" class="com.arjun.spring.MessageHandler">
+        <constructor-arg value="I am the constructor message" />
+    </bean>
+
+    <bean id="helloWorld_set" class="com.arjun.spring.MessageHandler">
         <constructor-arg value="I am the constructor message" />
         <property name="message" value="I override the constructor message"/>
+    </bean>
+
+    <bean id="helloWorld_singleton" class="com.arjun.spring.MessageHandler" scope="singleton">
+        <constructor-arg value="I am the constructor message" />
+
+    </bean>
+
+    <bean id="helloWorld_prototype" class="com.arjun.spring.MessageHandler" scope="prototype">
+        <constructor-arg value="I am the constructor message" />
 
     </bean>
 
