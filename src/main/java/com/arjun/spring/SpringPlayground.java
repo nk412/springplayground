@@ -8,7 +8,7 @@ public class SpringPlayground {
         ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 
         MessageHandler alpha_obj = (MessageHandler) context.getBean("helloWorld");
-        alpha_obj.setMessage("I am the one");
+//        alpha_obj.setMessage("I am the one");
         System.out.println(alpha_obj.getMessage());
 
         MessageHandler beta_obj = (MessageHandler) context.getBean("helloWorld");

@@ -30,7 +30,7 @@ public class SpringTest
         ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
         MessageHandler alpha_obj = (MessageHandler) context.getBean("helloWorld");
 
-        alpha_obj.setMessage("some random message");
+        alpha_obj.setTheMessage("some random message");
         assertTrue( alpha_obj.getMessage().equals("some random message") );
     }
 
@@ -55,10 +55,10 @@ public class SpringTest
     {
         ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
         MessageHandler alpha_obj = (MessageHandler) context.getBean("helloWorld_prototype");
-        alpha_obj.setMessage("some random message");
+        alpha_obj.setTheMessage("some random message");
 
         MessageHandler beta_obj = (MessageHandler) context.getBean("helloWorld_prototype");
-        beta_obj.setMessage("I am another message");
+        beta_obj.setTheMessage("I am another message");
 
         assertTrue( beta_obj.getMessage().equals("I am another message"));
         assertTrue( alpha_obj.getMessage().equals("some random message") );
@@ -68,10 +68,10 @@ public class SpringTest
     {
         ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
         MessageHandler alpha_obj = (MessageHandler) context.getBean("helloWorld_singleton");
-        alpha_obj.setMessage("some random message");
+        alpha_obj.setTheMessage("some random message");
 
         MessageHandler beta_obj = (MessageHandler) context.getBean("helloWorld_singleton");
-        beta_obj.setMessage("I am another message");
+        beta_obj.setTheMessage("I am another message");
 
         assertTrue( beta_obj.getMessage().equals("I am another message"));
         assertTrue( alpha_obj.getMessage().equals("I am another message") );
