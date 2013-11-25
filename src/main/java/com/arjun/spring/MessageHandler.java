@@ -9,7 +9,7 @@ public class MessageHandler {
         this.message=setme;
     }
 
-    public void setTheMessage(String message){
+    public void setMessage(String message){
         this.message  = message;
     }
 
