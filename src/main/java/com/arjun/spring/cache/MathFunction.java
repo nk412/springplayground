@@ -8,13 +8,15 @@ package com.arjun.spring.cache;
  * To change this template use File | Settings | File Templates.
  */
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
-import org.apache.log4j.Logger;
+
 
 public class MathFunction {
 
-    private static final Logger logger = Logger.getLogger(MathFunction.class);
+    private static final Logger logger = LoggerFactory.getLogger(MathFunction.class);
     private int n;
 
     MathFunction(){
@@ -33,14 +35,13 @@ public class MathFunction {
     @CacheEvict(value = "func", allEntries = true)
     public void setN(int newn) {
 
-        if (logger.isDebugEnabled())
-            logger.info("Setting n to "+newn);
+        logger.info("Setting n to "+newn);
         n=newn;
     }
 
 
     @Cacheable("func")
-    public Integer calculateF(int x) {
+    public Integer calculateF(int x, final MathFunction callback) {
 
         /*
         Taken from GPC2012, Problem I (last)
@@ -53,16 +54,18 @@ public class MathFunction {
         f(0)=12, f(1)=6
         */
 
+        logger.debug("Method called to calculateF(x) ["+x+"]");
+
         if (x==0)
             return 12;
         if (x==1)
             return 6;
 
         if (x<0)
-            return calculateF(x+1)+calculateF(x+2)-n;
+            return callback.calculateF(x+1,callback)+callback.calculateF(x+2,callback)-n;
         if (x>1 && isPrime(x))
-            return calculateF(x-1)+calculateF(x-2)+7;
+            return callback.calculateF(x-1,callback)+callback.calculateF(x-2,callback)+7;
         else
-            return calculateF(x-1)-calculateF(x-2)+n;
+            return callback.calculateF(x-1,callback)-callback.calculateF(x-2,callback)+n;
     }
 }

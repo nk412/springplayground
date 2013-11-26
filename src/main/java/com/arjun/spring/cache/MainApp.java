@@ -25,20 +25,28 @@ public class MainApp {
         f1.setN(1);
 
         long start_time=System.nanoTime();
-        System.out.println("F("+value+") = "+f1.calculateF(value));
+        System.out.println("F("+value+") = "+f1.calculateF(value,f1));
         double time_taken=(System.nanoTime()-start_time)/1000000;
         System.out.println("Time taken: "+time_taken+" ms");
 
         start_time=System.nanoTime();
-        System.out.println("F("+value+") = "+f1.calculateF(value));
+        System.out.println("F("+value+") = "+f1.calculateF(value,f1));
         time_taken=(System.nanoTime()-start_time)/1000000;
         System.out.println("Time taken: "+time_taken+" ms");
 
         // N <- 2. F(42)=-34
         f1.setN(2);
         start_time=System.nanoTime();
-        System.out.println("F("+value+") = "+f1.calculateF(value));
+        System.out.println("F("+value+") = "+f1.calculateF(value,f1));
         time_taken=(System.nanoTime()-start_time)/1000000;
         System.out.println("Time taken: "+time_taken+" ms");
+
+        start_time=System.nanoTime();
+        for (int y=0;y<300;y++){
+            System.out.println(y+":"+f1.calculateF(y,f1));
+        }
+        time_taken=(System.nanoTime()-start_time)/1000000;
+        System.out.println("Time taken: "+time_taken+" ms");
+
     }
 }
