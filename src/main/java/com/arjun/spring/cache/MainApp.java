@@ -8,11 +8,17 @@ package com.arjun.spring.cache;
  * To change this template use File | Settings | File Templates.
  */
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class MainApp {
+    private static final Logger logger = LoggerFactory.getLogger(MathFunction.class);
+
     public static void main(String... args) {
+
+        logger.debug("Started");
 
         int value=42;
 
