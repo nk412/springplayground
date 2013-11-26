@@ -13,22 +13,32 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class MainApp {
     public static void main(String... args) {
+
+        int value=42;
+
         AbstractApplicationContext context = new ClassPathXmlApplicationContext(
                 "CacheBeans.xml");
-        Product product = (Product) context.getBean("product");
 
-        // calling getProduct method first time.
-        System.out.println(product.getProduct(1));
+        MathFunction f1 = (MathFunction) context.getBean("function_bean");
 
-        // calling getProduct method second time. This time, method will not
-        // execute.
-        System.out.println(product.getProduct(1));
+        // N <- 1. F(42)=-36
+        f1.setN(1);
 
-        // calling setProduct method to evict the cache value
-        product.setProduct(1);
+        long start_time=System.nanoTime();
+        System.out.println("F("+value+") = "+f1.calculateF(value));
+        double time_taken=(System.nanoTime()-start_time)/1000000;
+        System.out.println("Time taken: "+time_taken+" ms");
 
-        // calling getProduct method third time. This time, method will execute
-        // again.
-        System.out.println(product.getProduct(1));
+        start_time=System.nanoTime();
+        System.out.println("F("+value+") = "+f1.calculateF(value));
+        time_taken=(System.nanoTime()-start_time)/1000000;
+        System.out.println("Time taken: "+time_taken+" ms");
+
+        // N <- 2. F(42)=-34
+        f1.setN(2);
+        start_time=System.nanoTime();
+        System.out.println("F("+value+") = "+f1.calculateF(value));
+        time_taken=(System.nanoTime()-start_time)/1000000;
+        System.out.println("Time taken: "+time_taken+" ms");
     }
 }

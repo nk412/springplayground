@@ -23,7 +23,7 @@ http://www.springframework.org/schema/p ">
 
     <cache:annotation-driven/>
 
-    <bean id="product" class="com.arjun.spring.cache.Product">
+    <bean id="function_bean" class="com.arjun.spring.cache.MathFunction">
     </bean>
     <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager"
           p:cache-manager-ref="ehcache"/>
